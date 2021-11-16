@@ -2166,5 +2166,5 @@ do
 			frame.ScrollBarImageTransparency = 1
 		end
 	end
-end
+end)
 return library
