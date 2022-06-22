@@ -1,6 +1,6 @@
 print("Made by Lost")
 warn("French touch :D")
-_G.FormCheckTime = _G.GrabCheckTime
+_G.GrabCheckTime = _G.FormCheckTime
 _, Protected_by_MoonSecV2, Discord = 'discord.gg/gQEH2uZxUk'
 
 
