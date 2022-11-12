@@ -1,36 +1,8 @@
-_G.LostAutofarmSettings = {
-	Farming = "",
-	Invis = "",
-}
-
 if AutoFarmLost1687Loaded then
     wait(9e9)
 end
 getgenv().AutoFarmLost1687Loaded = true
 math.randomseed(os.time())
-
--- file shit
-local filename = "Lost Spts AutoFarm.txt"
-local json
-coroutine.wrap(function()
-    if not writefile then
-        repeat wait() until(game:IsLoaded())
-        repeat wait() until(game.Players.LocalPlayer)
-        game.Players.LocalPlayer:Kick("Executor cannot support this script.")
-    else
-        repeat wait() until(game:IsLoaded())
-        local HttpService = game:GetService("HttpService")
-        if isfile(filename) then
-            json = HttpService:JSONDecode(readfile(filename))
-            if json ~= _G.LostAutofarmSettings then
-                _G.LostAutofarmSettings = json
-            end
-        else
-            json = HttpService:JSONEncode(_G.LostAutofarmSettings)
-            writefile(filename, json)
-	    end
-    end
-end){}
 
 local PsyPlaces = {
     [1] = CFrame.new(-2558, 5416, -507), -- Flying Island 1M
@@ -79,11 +51,20 @@ local FSAmountNeeded = {
     [5] = 100,
 }
 
-if _G.LostAutofarmSettings.Farming == "Body Toughness" then
+if LostAutofarmSettings.Farming:lower() == "body boughness" or LostAutofarmSettings.Farming:lower() == "body" or LostAutofarmSettings.Farming:lower() == "bt" then
+    LostAutofarmSettings.Farming = "Body Toughness"
+end
+if LostAutofarmSettings.Farming:lower() == "psychic power" or LostAutofarmSettings.Farming:lower() == "psychic" or LostAutofarmSettings.Farming:lower() == "psy" then
+    LostAutofarmSettings.Farming = "Psychic Power"
+end
+if LostAutofarmSettings.Farming:lower() == "fist strength" or LostAutofarmSettings.Farming:lower() == "fist" or LostAutofarmSettings.Farming:lower() == "fs" then
+    LostAutofarmSettings.Farming = "Fist Strength"
+end
+if LostAutofarmSettings.Farming == "Body Toughness" then
     _G.stathelloidk = "BodyToughness"
-elseif _G.LostAutofarmSettings.Farming == "Psychic Power" then
+elseif LostAutofarmSettings.Farming == "Psychic Power" then
     _G.stathelloidk = "PsychicPower"
-elseif _G.LostAutofarmSettings.Farming == "Fist Strength" then
+elseif LostAutofarmSettings.Farming == "Fist Strength" then
     _G.stathelloidk = "FistStrength"
 end
 
@@ -226,13 +207,13 @@ coroutine.wrap(function()
         if identifyexecutor() ~= "ScriptWare" then
             rconsoleprint("@@RED@@")
         end
-        rconsoleprint("\n".."Working on ".._G.LostAutofarmSettings.Farming..".", "red")
-        if _G.LostAutofarmSettings.Invis then
+        rconsoleprint("\n".."Working on "..LostAutofarmSettings.Farming..".", "red")
+        if LostAutofarmSettings.Invis then
             rconsoleprint("\n".."You are invisible.", "red")
         else
             rconsoleprint("\n".."You are not invisible.", "red")
         end
-        rconsoleprint("\n".."Old ".._G.LostAutofarmSettings.Farming.." Stat = "..ConvertToLetter(oldidkyeah), "red")
+        rconsoleprint("\n".."Old "..LostAutofarmSettings.Farming.." Stat = "..ConvertToLetter(oldidkyeah), "red")
         rconsoleprint("\n".."Time Elapsed : "..DisplayTime(idktime), "red")
     end
 end){}
@@ -341,7 +322,7 @@ coroutine.wrap(function()
         warn("♠ ez AutoFarm ♠")
         game.workspace.CurrentCamera.CameraType = "Scriptable"
         game:GetService("TweenService"):Create(game.workspace.CurrentCamera, TweenInfo.new(0, Enum.EasingStyle.Linear), {CFrame = CFrame.new(math.random(1000000, 9000000), math.random(1000000, 9000000), math.random(1000000, 9000000))}):Play()
-        TextLabel_2.Text = _G.LostAutofarmSettings.Farming.." : "..ConvertToLetter(game.Players.LocalPlayer.PrivateStats[_G.stathelloidk].Value)
+        TextLabel_2.Text = LostAutofarmSettings.Farming.." : "..ConvertToLetter(game.Players.LocalPlayer.PrivateStats[_G.stathelloidk].Value)
     end)
     error("♠ There is no error in my script ;| ♠")
 end){}
@@ -360,7 +341,7 @@ else
 end
 repeat wait() until(plr.Character)
 function Invisible()
-    if _G.LostAutofarmSettings.Invis then
+    if LostAutofarmSettings.Invis then
         if plr.Character:FindFirstChild("LeftLowerLeg") then
             plr.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(1000000, 9000000), math.random(1000000, 9000000), math.random(1000000, 9000000))
             wait(.1)
@@ -390,7 +371,7 @@ game.RunService.Stepped:connect(function()
     local FSStat = tonumber(plr.PrivateStats.FistStrength.Value)
     if plr.Character then
         if plr.Character:FindFirstChild("HumanoidRootPart") then
-            if _G.LostAutofarmSettings.Farming == "Psychic Power" then
+            if LostAutofarmSettings.Farming == "Psychic Power" then
                 for i, v in ipairs(PsyAmountNeeded) do
                     if plr.Character:FindFirstChild("Humanoid") then
                         if plr.Character.Humanoid.Health <= 0 then
@@ -409,7 +390,7 @@ game.RunService.Stepped:connect(function()
                         break
                     end
                 end
-            elseif _G.LostAutofarmSettings.Farming == "Body Toughness" then
+            elseif LostAutofarmSettings.Farming == "Body Toughness" then
                 for i, v in ipairs(BTAmountNeeded) do
                     if plr.Character:FindFirstChild("Humanoid") then
                         if plr.Character.Humanoid.Health < 50 then
@@ -422,7 +403,7 @@ game.RunService.Stepped:connect(function()
                         break
                     end
                 end
-            elseif _G.LostAutofarmSettings.Farming == "Fist Strength" then
+            elseif LostAutofarmSettings.Farming == "Fist Strength" then
                 for i, v in ipairs(FSAmountNeeded) do
                     if plr.Character:FindFirstChild("Humanoid") then
                         if plr.Character.Humanoid.Health <= 0 then
@@ -444,6 +425,3 @@ game.RunService.Stepped:connect(function()
         end
     end
 end)
-
-local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/ItzLost/Lost-Scripts/main/Lost-Spts-AutoFarm.lua'))()")
