@@ -5,6 +5,8 @@ getgenv().AutoFarmLost1687Loaded = true
 math.randomseed(os.time())
 
 -- file shit
+local filename = "Lost Spts AutoFarm.txt"
+local json
 coroutine.wrap(function()
     if not writefile then
         repeat wait() until(game:IsLoaded())
