@@ -1,7 +1,7 @@
-if not _G.LostAutofarmSettings.Invis == true or not _G.LostAutofarmSettings.Invis == false then
+if _G.LostAutofarmSettings.Invis ~= true and _G.LostAutofarmSettings.Invis ~= false then
     _G.LostAutofarmSettings = {
-        Farming = "", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
-        Invis = "idk", -- It will not press "T".
+        Farming = "If you see this, it's a bug", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
+        Invis = "If you see this, it's a bug2", -- It will not press "T".
     }
 end
 
@@ -13,8 +13,6 @@ math.randomseed(os.time())
 
 -- file shit
 coroutine.wrap(function()
-    local filename = "Lost Spts AutoFarm.txt"
-    local json
     if not writefile then
         repeat wait() until(game:IsLoaded())
         repeat wait() until(game.Players.LocalPlayer)
@@ -24,7 +22,9 @@ coroutine.wrap(function()
         local HttpService = game:GetService("HttpService")
         if isfile(filename) then
             json = HttpService:JSONDecode(readfile(filename))
-            _G.LostAutofarmSettings = json
+            if json ~= _G.LostAutofarmSettings then
+                _G.LostAutofarmSettings = json
+            end
         else
             json = HttpService:JSONEncode(_G.LostAutofarmSettings)
             writefile(filename, json)
@@ -79,15 +79,6 @@ local FSAmountNeeded = {
     [5] = 100,
 }
 
-if _G.LostAutofarmSettings.Farming:lower() == "body boughness" or _G.LostAutofarmSettings.Farming:lower() == "body" or _G.LostAutofarmSettings.Farming:lower() == "bt" then
-    _G.LostAutofarmSettings.Farming = "Body Toughness"
-end
-if _G.LostAutofarmSettings.Farming:lower() == "psychic power" or _G.LostAutofarmSettings.Farming:lower() == "psychic" or _G.LostAutofarmSettings.Farming:lower() == "psy" then
-    _G.LostAutofarmSettings.Farming = "Psychic Power"
-end
-if _G.LostAutofarmSettings.Farming:lower() == "fist strength" or _G.LostAutofarmSettings.Farming:lower() == "fist" or _G.LostAutofarmSettings.Farming:lower() == "fs" then
-    _G.LostAutofarmSettings.Farming = "Fist Strength"
-end
 if _G.LostAutofarmSettings.Farming == "Body Toughness" then
     _G.stathelloidk = "BodyToughness"
 elseif _G.LostAutofarmSettings.Farming == "Psychic Power" then
@@ -236,7 +227,7 @@ coroutine.wrap(function()
             rconsoleprint("@@RED@@")
         end
         rconsoleprint("\n".."Working on ".._G.LostAutofarmSettings.Farming..".", "red")
-        if Invis then
+        if _G.LostAutofarmSettings.Invis then
             rconsoleprint("\n".."You are invisible.", "red")
         else
             rconsoleprint("\n".."You are not invisible.", "red")
@@ -369,7 +360,7 @@ else
 end
 repeat wait() until(plr.Character)
 function Invisible()
-    if Invis then
+    if _G.LostAutofarmSettings.Invis then
         if plr.Character:FindFirstChild("LeftLowerLeg") then
             plr.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(1000000, 9000000), math.random(1000000, 9000000), math.random(1000000, 9000000))
             wait(.1)
