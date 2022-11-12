@@ -1,3 +1,10 @@
+if not _G.LostAutofarmSettings.Invis == true or not _G.LostAutofarmSettings.Invis == false then
+    _G.LostAutofarmSettings = {
+        Farming = "", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
+        Invis = nil, -- It will not press "T".
+    }
+end
+
 if AutoFarmLost1687Loaded then
     wait(9e9)
 end
@@ -5,7 +12,7 @@ getgenv().AutoFarmLost1687Loaded = true
 math.randomseed(os.time())
 
 -- file shit
-coroutine.wrap(function ()
+coroutine.wrap(function()
     local filename = "Lost Spts AutoFarm.txt"
     local json
     if not writefile then
@@ -16,14 +23,9 @@ coroutine.wrap(function ()
         repeat wait() until(game:IsLoaded())
         local HttpService = game:GetService("HttpService")
         if isfile(filename) then
-            if _G.LostAutofarmSettings ~= HttpService:JSONDecode(readfile(filename)) then
-                json = HttpService:JSONEncode(_G.LostAutofarmSettings)
-                writefile(filename, json)
-            end
-        else
-            json = HttpService:JSONEncode(_G.LostAutofarmSettings)
-            writefile(filename, json)
-        end
+            json = HttpService:JSONDecode(readfile(filename))
+            _G.LostAutofarmSettings = json
+	    end
     end
 end){}
 
