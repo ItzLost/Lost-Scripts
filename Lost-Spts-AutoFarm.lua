@@ -1,3 +1,8 @@
+_G.LostAutofarmSettings = {
+	Farming = "",
+	Invis = "",
+}
+
 if AutoFarmLost1687Loaded then
     wait(9e9)
 end
