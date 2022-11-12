@@ -1,9 +1,3 @@
-_G.LostAutofarmSettings = {
-    Farming = "bt", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
-    Invis = true, -- It will not press "T".
-}
-
-
 if AutoFarmLost1687Loaded then
     wait(9e9)
 end
