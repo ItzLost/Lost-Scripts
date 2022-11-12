@@ -1,7 +1,7 @@
 if not _G.LostAutofarmSettings.Invis == true or not _G.LostAutofarmSettings.Invis == false then
     _G.LostAutofarmSettings = {
         Farming = "", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
-        Invis = nil, -- It will not press "T".
+        Invis = "idk", -- It will not press "T".
     }
 end
 
