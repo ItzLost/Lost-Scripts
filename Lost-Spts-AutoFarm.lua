@@ -19,8 +19,6 @@ coroutine.wrap(function ()
             if _G.LostAutofarmSettings ~= HttpService:JSONDecode(readfile(filename)) then
                 json = HttpService:JSONEncode(_G.LostAutofarmSettings)
                 writefile(filename, json)
-            else
-                _G.LostAutofarmSettings = HttpService:JSONDecode(readfile(filename))
             end
         else
             json = HttpService:JSONEncode(_G.LostAutofarmSettings)
