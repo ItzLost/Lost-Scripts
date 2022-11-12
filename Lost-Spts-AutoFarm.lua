@@ -25,6 +25,9 @@ coroutine.wrap(function()
         if isfile(filename) then
             json = HttpService:JSONDecode(readfile(filename))
             _G.LostAutofarmSettings = json
+        else
+            json = HttpService:JSONEncode(_G.LostAutofarmSettings)
+            writefile(filename, json)
 	    end
     end
 end){}
