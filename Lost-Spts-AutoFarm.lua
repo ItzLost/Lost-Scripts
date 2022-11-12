@@ -1,10 +1,3 @@
-if _G.LostAutofarmSettings.Invis ~= true and _G.LostAutofarmSettings.Invis ~= false then
-    _G.LostAutofarmSettings = {
-        Farming = "If you see this, it's a bug", -- Body Toughness/Body/BT, Psychic Power/Psychic/Psy, Fist Strength/Fist/FS
-        Invis = "If you see this, it's a bug2", -- It will not press "T".
-    }
-end
-
 if AutoFarmLost1687Loaded then
     wait(9e9)
 end
